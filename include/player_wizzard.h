@@ -1,0 +1,31 @@
+#ifndef PLAYER_WIZZARD_H
+#define PLAYER_WIZZARD_H
+
+#include <QWidget>
+#include "include/memory.h"
+
+namespace Ui {
+class player_wizzard;
+}
+
+class player_wizzard : public QWidget
+{
+    Q_OBJECT
+    
+public:
+    explicit player_wizzard(Memory *game, QWidget *parent = 0);
+    ~player_wizzard();
+    
+private slots:
+    void on_add_player_button_clicked();
+
+    void on_remove_player_button_clicked();
+
+    void activate_next();
+
+private:
+    Ui::player_wizzard *ui;
+    Memory *_game;
+};
+
+#endif // PLAYER_WIZZARD_H

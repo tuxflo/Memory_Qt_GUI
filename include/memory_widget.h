@@ -2,6 +2,10 @@
 #define MEMORY_WIDGET_H
 
 #include <QWidget>
+#include <QGraphicsScene>
+#include <QGraphicsWidget>
+#include <QGraphicsGridLayout>
+
 
 namespace Ui {
 class Memory_Widget;
@@ -17,6 +21,9 @@ public:
     
 private:
     Ui::Memory_Widget *ui;
+    QGraphicsScene *_scene;
+    QGraphicsWidget *_graphics_widget;
+    QGraphicsGridLayout *_grid;
 };
 
 #endif // MEMORY_WIDGET_H

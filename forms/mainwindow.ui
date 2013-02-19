@@ -6,67 +6,74 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>568</width>
+    <height>493</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QMemory Main Menu</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="mainPicture">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>20</y>
-      <width>321</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>150</y>
-      <width>301</width>
-      <height>91</height>
+      <x>10</x>
+      <y>20</y>
+      <width>541</width>
+      <height>401</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="new_game_button">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="mainPicture">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>5</verstretch>
+        </sizepolicy>
+       </property>
        <property name="text">
-        <string>New Game</string>
+        <string/>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="Help_button">
-       <property name="text">
-        <string>Help</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="exit_button">
-       <property name="text">
-        <string>Exit</string>
-       </property>
-      </widget>
+     <item row="1" column="0">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="new_game_button">
+         <property name="text">
+          <string>New Game</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Help_button">
+         <property name="text">
+          <string>Help</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exit_button">
+         <property name="text">
+          <string>Exit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
+   <zorder>mainPicture</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>Help_button</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>568</width>
      <height>22</height>
     </rect>
    </property>

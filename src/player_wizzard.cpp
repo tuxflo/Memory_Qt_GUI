@@ -9,16 +9,20 @@ player_wizzard::player_wizzard(Memory *game, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->listWidget->setIconSize(QSize(50,50));
+    QPalette p = ui->listWidget->palette();
+    p.setColor(QPalette::Highlight, Qt::darkGreen);
+    ui->listWidget->setPalette(p);
     ui->next_button->setDisabled(true);
 
     //Just for debuging
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"),"BlueHills",ui->listWidget);
+    QListWidgetItem *item1 = new QListWidgetItem(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"),"Player 1",ui->listWidget);
     ui->next_button->setDisabled(false);
+    setParent(0);
 }
 
 player_wizzard::~player_wizzard()
 {
-    delete ui;
+    //delete ui;
 }
 
 void player_wizzard::on_add_player_button_clicked()
@@ -53,4 +57,9 @@ void player_wizzard::on_remove_player_button_clicked()
 void player_wizzard::on_next_button_clicked()
 {
     emit card_set_wizzard();
+}
+
+void player_wizzard::on_back_button_clicked()
+{
+    emit back();
 }

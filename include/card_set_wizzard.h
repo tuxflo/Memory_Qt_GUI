@@ -8,8 +8,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QListView>
-#include <QStandardItemModel>
-
+#include <QListWidgetItem>
 #include "include/memory.h"
 
 namespace Ui {
@@ -25,15 +24,20 @@ public:
     ~Card_Set_Wizzard();
 signals:
     void card_setted();
-    
+    void back();
+
 private slots:
     void on_next_button_clicked();
+    void _set_num_of_cards();
+
+    void on_back_button_clicked();
 
 private:
     Ui::Card_Set_Wizzard *ui;
-    QStandardItemModel *_model;
-    QList<QStandardItem*> *_item_list;
+
+    QList<QListWidgetItem*> *_item_list;
     Memory *_game;
+    QString *_folder_path;
 
 };
 

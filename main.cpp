@@ -5,9 +5,9 @@
 #include "include/card.h"
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+     QApplication a(argc, argv);
     MainWindow w;
     w.show();
-    Card *card = new Memory_Card;
+    //Card *card = new Memory_Card;
     return a.exec();
 }

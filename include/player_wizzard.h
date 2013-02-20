@@ -17,12 +17,15 @@ public:
     ~player_wizzard();
 signals:
     void card_set_wizzard();
+    void back();
 private slots:
     void on_add_player_button_clicked();
 
     void on_remove_player_button_clicked();
 
     void on_next_button_clicked();
+
+    void on_back_button_clicked();
 
 private:
     Ui::player_wizzard *ui;

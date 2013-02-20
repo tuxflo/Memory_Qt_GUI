@@ -2,7 +2,8 @@
 #define PLAYER_WIZZARD_H
 
 #include <QWidget>
-#include "include/memory.h"
+#include "include/i_memory.h"
+#include "include/qplayer.h"
 
 namespace Ui {
 class player_wizzard;
@@ -13,7 +14,7 @@ class player_wizzard : public QWidget
     Q_OBJECT
     
 public:
-    explicit player_wizzard(Memory *game, QWidget *parent = 0);
+    explicit player_wizzard(I_Memory *game, QWidget *parent = 0);
     ~player_wizzard();
 signals:
     void card_set_wizzard();
@@ -29,7 +30,7 @@ private slots:
 
 private:
     Ui::player_wizzard *ui;
-    Memory *_game;
+    I_Memory *_game;
 };
 
 #endif // PLAYER_WIZZARD_H

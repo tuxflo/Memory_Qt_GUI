@@ -2,7 +2,7 @@
 #include "ui_player_wizzard.h"
 #include <QInputDialog>
 
-player_wizzard::player_wizzard(Memory *game, QWidget *parent) :
+player_wizzard::player_wizzard(I_Memory *game, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::player_wizzard),
     _game(game)
@@ -27,26 +27,32 @@ player_wizzard::~player_wizzard()
 
 void player_wizzard::on_add_player_button_clicked()
 {
-    //QListWidgetItem *item1 = new QListWidgetItem(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"),"BlueHills",ui->listWidget);
-    QString itemText = QInputDialog::getText(this, tr("New Player"),
+    QString playername = QInputDialog::getText(this, tr("New Player"),
            tr("Enter Name for the new Player:"));
 
-       if (itemText.isNull())
+       if (playername.isNull())
            return;
 
 
        QListWidgetItem *newItem = new QListWidgetItem;
-       newItem->setText(itemText);
+       newItem->setText(playername);
        newItem->setIcon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
 
        int row = ui->listWidget->row(ui->listWidget->currentItem());
 
        ui->listWidget->insertItem(row, newItem);
        ui->next_button->setDisabled(false);
+       //Add the player to the Memory_Enigne
+       QPLayer player(playername);
+       player.set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
+       player.set_color(Qt::darkGreen);
+       _game->add_player(&player);
+
 }
 
 void player_wizzard::on_remove_player_button_clicked()
 {
+    _game->remove_player(ui->listWidget->currentItem()->text().toAscii().data());
     ui->listWidget->takeItem(ui->listWidget->row(ui->listWidget->currentItem()));
     if(ui->listWidget->count() == 0)
         ui->next_button->setDisabled(true);

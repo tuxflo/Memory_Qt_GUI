@@ -33,6 +33,9 @@
        </item>
        <item>
         <widget class="QPushButton" name="remove_player_button">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Removes the current selected Player.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
           <string>Remove Player</string>
          </property>

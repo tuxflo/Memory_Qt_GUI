@@ -9,7 +9,7 @@
 #include <QDebug>
 #include <QListView>
 #include <QListWidgetItem>
-#include "include/memory.h"
+#include "include/i_memory.h"
 
 namespace Ui {
 class Card_Set_Wizzard;
@@ -20,7 +20,7 @@ class Card_Set_Wizzard : public QWidget
     Q_OBJECT
     
 public:
-    explicit Card_Set_Wizzard(Memory *game, QWidget *parent = 0);
+    explicit Card_Set_Wizzard(I_Memory *game, QWidget *parent = 0);
     ~Card_Set_Wizzard();
 signals:
     void card_setted();
@@ -36,7 +36,7 @@ private:
     Ui::Card_Set_Wizzard *ui;
 
     QList<QListWidgetItem*> *_item_list;
-    Memory *_game;
+    I_Memory *_game;
     QString *_folder_path;
 
 };

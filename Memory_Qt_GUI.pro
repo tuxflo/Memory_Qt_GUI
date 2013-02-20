@@ -26,7 +26,8 @@ SOURCES += main.cpp \
     ../Memory_Engine/src/memory_state.cpp \
     src/player_wizzard.cpp \
     src/card_set_wizzard.cpp \
-    src/main_menu.cpp
+    src/main_menu.cpp \
+    src/qplayer.cpp
 
 HEADERS  += mainwindow.h \
     include/mainwindow.h \
@@ -35,7 +36,8 @@ HEADERS  += mainwindow.h \
     include/memory.h \
     include/player_wizzard.h \
     include/card_set_wizzard.h \
-    include/main_menu.h
+    include/main_menu.h \
+    include/qplayer.h
 
 FORMS    += forms/mainwindow.ui \
     forms/memory_widget.ui \

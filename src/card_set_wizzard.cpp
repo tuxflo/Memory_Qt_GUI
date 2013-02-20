@@ -2,10 +2,10 @@
 #include "ui_card_set_wizzard.h"
 #include <QList>
 
-Card_Set_Wizzard::Card_Set_Wizzard(Memory *game, QWidget *parent) :
+Card_Set_Wizzard::Card_Set_Wizzard(I_Memory *game, QWidget *parent) :
     QWidget(parent),
-    _game(game),
-    ui(new Ui::Card_Set_Wizzard)
+    ui(new Ui::Card_Set_Wizzard),
+    _game(game)
 {
     ui->setupUi(this);
 

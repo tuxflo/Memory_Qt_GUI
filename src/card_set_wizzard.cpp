@@ -27,59 +27,22 @@ Card_Set_Wizzard::Card_Set_Wizzard(I_Memory *game, QWidget *parent) :
         }
         picture_dir.setFilter(QDir::Dirs | QDir::NoSymLinks | QDir::NoDot | QDir::NoDotDot);
         QFileInfoList list = picture_dir.entryInfoList();
+        QStringList filter;
+        filter << "thumbnail.png";
+        picture_dir.setNameFilters(filter);
 
         for(int i=0; i< list.size(); i++)
         {
-            QString filename = list.at(i).absoluteFilePath();
-            filename.append("/thumbnail.png");
-            QFile file(filename);
-            if(!file.exists())
+            QString icon_path = list.at(i).absoluteFilePath();
+            icon_path.append("/");
+            icon_path.append(filter.first());
+            if(QFile(icon_path).exists()) //Add the Icon to the List if there is a thumbnail file
             {
-                QMessageBox::warning(this, tr("Warning"), tr("Could not find thumbnail.png in folder: %1").arg(filename), QMessageBox::Ok);
-                list.removeAt(i);
-                i--;
-            }
-            else
-            {
-                QListWidgetItem *item = new QListWidgetItem(QIcon(filename), list.at(i).fileName(), ui->listWidget);
+                QListWidgetItem *item = new QListWidgetItem(QIcon(icon_path), list.at(i).fileName(), ui->listWidget);
+                ui->listWidget->addItem(item);
             }
         }
         connect(ui->listWidget, SIGNAL(itemSelectionChanged()), this, SLOT(_set_num_of_cards()));
-//    ui->listView->setViewMode(QListView::IconMode);
-//    ui->listView->setIconSize(QSize(200, 200));
-
-//    _model = new QStandardItemModel(this);
-//    _item_list = new QList<QStandardItem*>;
-
-//    //Checkout the different card folders
-//    QDir picture_dir("./Pictures");
-//    if(!picture_dir.exists())
-//    {
-//        QMessageBox::critical(this, tr("Error"),
-//                                       tr("Could not find Picture folder!\nPlease make sure that it exists in the current directory."),QMessageBox::Ok);
-//        QApplication::exit(-1);
-//    }
-//    picture_dir.setFilter(QDir::Dirs | QDir::NoSymLinks | QDir::NoDot | QDir::NoDotDot);
-//    QFileInfoList list = picture_dir.entryInfoList();
-
-//    for(int i=0; i< list.size(); i++)
-//    {
-//        QString filename = list.at(i).absoluteFilePath();
-//        filename.append("/thumbnail.png");
-//        QFile file(filename);
-//        if(!file.exists())
-//        {
-//            QMessageBox::warning(this, tr("Warning"), tr("Could not find thumbnail.png in folder: %1").arg(filename), QMessageBox::Ok);
-//            list.removeAt(i);
-//            i--;
-//        }
-//        else
-//        {
-//            _item_list->push_back(new QStandardItem(QIcon(filename), list.at(i).fileName()));
-//        }
-//    }
-//    _model->appendColumn(*_item_list);
-//    ui->listView->setModel(_model);
 }
 
 Card_Set_Wizzard::~Card_Set_Wizzard()
@@ -89,6 +52,7 @@ Card_Set_Wizzard::~Card_Set_Wizzard()
 
 void Card_Set_Wizzard::on_next_button_clicked()
 {
+    _game->set_number_of_cards(ui->spinBox->value());
     emit card_setted();
 }
 
@@ -113,13 +77,17 @@ void Card_Set_Wizzard::_set_num_of_cards()
             ui->spinBox->setValue(num-1);
             ui->spinBox->setMaximum(num-1);
         }
+        ui->spinBox->setDisabled(false);
         ui->next_button->setDisabled(false);
     }
     else
     {
-        ui->spinBox->setValue(0);
+        QMessageBox::warning(this, tr("Error"),
+                                       tr("There are no Cards in %1").arg(tmp_folder_path),QMessageBox::Ok);
+        ui->spinBox->setDisabled(true);
         ui->next_button->setDisabled(true);
     }
+
 }
 
 void Card_Set_Wizzard::on_back_button_clicked()

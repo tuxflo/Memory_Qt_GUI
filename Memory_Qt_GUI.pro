@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     src/player_wizzard.cpp \
     src/card_set_wizzard.cpp \
     src/main_menu.cpp \
-    src/qplayer.cpp
+    src/qplayer.cpp \
+    src/memorygraphicswidget.cpp
 
 HEADERS  += mainwindow.h \
     include/mainwindow.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     include/player_wizzard.h \
     include/card_set_wizzard.h \
     include/main_menu.h \
-    include/qplayer.h
+    include/qplayer.h \
+    include/memorygraphicswidget.h
 
 FORMS    += forms/mainwindow.ui \
     forms/memory_widget.ui \

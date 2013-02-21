@@ -3,11 +3,10 @@
 
 #include <QWidget>
 #include <QGraphicsScene>
-#include <QGraphicsWidget>
-#include <QGraphicsGridLayout>
 
 #include "include/i_memory.h"
 #include "include/qplayer.h"
+#include "include/memorygraphicswidget.h"
 
 
 namespace Ui {
@@ -25,8 +24,7 @@ public:
 private:
     Ui::Memory_Widget *ui;
     QGraphicsScene *_scene;
-    QGraphicsWidget *_graphics_widget;
-    QGraphicsGridLayout *_grid;
+    MemoryGraphicsWidget *_graphics_widget;
 
     I_Memory *_game;
 };

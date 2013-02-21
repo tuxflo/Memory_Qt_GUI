@@ -22,7 +22,7 @@ player_wizzard::player_wizzard(I_Memory *game, QWidget *parent) :
 
 player_wizzard::~player_wizzard()
 {
-    //delete ui;
+    delete ui;
 }
 
 void player_wizzard::on_add_player_button_clicked()
@@ -43,10 +43,10 @@ void player_wizzard::on_add_player_button_clicked()
        ui->listWidget->insertItem(row, newItem);
        ui->next_button->setDisabled(false);
        //Add the player to the Memory_Enigne
-       QPLayer player(playername);
-       player.set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
-       player.set_color(Qt::darkGreen);
-       _game->add_player(&player);
+       QPLayer *player = new QPLayer(playername);
+       player->set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
+       player->set_color(Qt::darkGreen);
+       _game->add_player(player);
 
 }
 

@@ -19,7 +19,7 @@ QColor QPLayer::get_color()
     return _color;
 }
 
-void QPLayer::set_icon(const QIcon &icon)
+void QPLayer::set_icon(const QIcon& icon)
 {
     _icon = icon;
 }
@@ -27,4 +27,9 @@ void QPLayer::set_icon(const QIcon &icon)
 QIcon QPLayer::get_icon()
 {
     return _icon;
+}
+
+void QPLayer::set_name(QString name)
+{
+    Player::set_name(name.toAscii().data());
 }

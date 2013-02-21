@@ -6,6 +6,9 @@
 #include <QGraphicsWidget>
 #include <QGraphicsGridLayout>
 
+#include "include/i_memory.h"
+#include "include/qplayer.h"
+
 
 namespace Ui {
 class Memory_Widget;
@@ -16,7 +19,7 @@ class Memory_Widget : public QWidget
     Q_OBJECT
     
 public:
-    explicit Memory_Widget(QWidget *parent = 0);
+    explicit Memory_Widget(I_Memory *game, QWidget *parent = 0);
     ~Memory_Widget();
     
 private:
@@ -24,6 +27,8 @@ private:
     QGraphicsScene *_scene;
     QGraphicsWidget *_graphics_widget;
     QGraphicsGridLayout *_grid;
+
+    I_Memory *_game;
 };
 
 #endif // MEMORY_WIDGET_H

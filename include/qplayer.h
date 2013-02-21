@@ -12,10 +12,12 @@ class QPLayer : public Player
 public:
     QPLayer();
     QPLayer(QString name);
+    ~QPLayer(){}
     void set_color(const QColor& color);
     QColor get_color();
     void set_icon(const QIcon& icon);
     QIcon get_icon();
+    void set_name(QString name);
 protected:
 private:
     QIcon _icon;

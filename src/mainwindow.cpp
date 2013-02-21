@@ -49,8 +49,10 @@ void MainWindow::_card_set_wizzard()
 void MainWindow::_new_game()
 {
     //Here starts the "real" game
-    _memory_widget = new Memory_Widget();
-    setCentralWidget(_memory_widget);
+    _memory_widget = new Memory_Widget(_game, this);
+    //setCentralWidget(_memory_widget);
+    _stacked_widget->insertWidget(3, _memory_widget);
+    _stacked_widget->setCurrentIndex(3);
 }
 
 void MainWindow::_help()
@@ -65,15 +67,7 @@ void MainWindow::_quit()
 
 void MainWindow::_back()
 {
-    switch(_stacked_widget->currentIndex())
-    {
-        case 1:
-            _stacked_widget->setCurrentIndex(0);
-            break;
-        case 2:
-            _stacked_widget->setCurrentIndex(1);
-            break;
-    }
+    _stacked_widget->setCurrentIndex(_stacked_widget->currentIndex()-1);
 }
 
 void MainWindow::_new_game_wizzard()

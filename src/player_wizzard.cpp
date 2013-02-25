@@ -15,13 +15,13 @@ player_wizzard::player_wizzard(I_Memory *game, QWidget *parent) :
     ui->next_button->setDisabled(true);
 
     //Just for debuging
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"),"Player 1",ui->listWidget);
-    ui->listWidget->addItem(item1);
-    QPLayer *player = new QPLayer("Player 1");
-    player->set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
-    player->set_color(Qt::darkGreen);
-    _game->add_player(player);
-    ui->next_button->setDisabled(false);
+//    QListWidgetItem *item1 = new QListWidgetItem(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"),"Player 1",ui->listWidget);
+//    ui->listWidget->addItem(item1);
+//    QPLayer *player = new QPLayer("Player 1");
+//    player->set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
+//    player->set_color(Qt::darkGreen);
+//    _game->add_player(player);
+//    ui->next_button->setDisabled(false);
 
     setParent(0);
 }

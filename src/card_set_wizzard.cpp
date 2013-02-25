@@ -63,19 +63,18 @@ void Card_Set_Wizzard::_set_num_of_cards()
     QString tmp_folder_path = "./Pictures/";
     tmp_folder_path.append(itemlist.front()->text());
     tmp_folder_path.append("/svg");
-    qDebug() << tmp_folder_path;
     if(_game->set_folder_path(tmp_folder_path.toAscii().data()))
     {
         int num = _game->get_possible_num_cards();
-        if(!num%2)
+        if(num%2 == 0)
         {
-            ui->spinBox->setValue(num);
-            ui->spinBox->setMaximum(num);
+            ui->spinBox->setValue(_game->get_possible_num_cards());
+            ui->spinBox->setMaximum(_game->get_possible_num_cards());
         }
         else
         {
-            ui->spinBox->setValue(num-1);
-            ui->spinBox->setMaximum(num-1);
+            ui->spinBox->setValue(_game->get_possible_num_cards()-1);
+            ui->spinBox->setMaximum(_game->get_possible_num_cards()-1);
         }
         ui->spinBox->setDisabled(false);
         ui->next_button->setDisabled(false);

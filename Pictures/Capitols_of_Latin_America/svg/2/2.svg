@@ -13,7 +13,7 @@
    inkscape:export-ydpi="90"
    inkscape:export-xdpi="90"
    inkscape:export-filename="/home/tuxflo/workspace/QT/QMemory_GUI/Pictures/Spanisch/1/8.png"
-   sodipodi:docname="3.svg"
+   sodipodi:docname="template.svg"
    inkscape:version="0.48.4 r9939"
    version="1.1"
    id="svg2"
@@ -27,7 +27,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="-19.076831"
+     inkscape:cx="24.864804"
      inkscape:cy="87.224446"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -50,7 +50,7 @@
          offset="0"
          id="stop10923" />
       <stop
-         style="stop-color:#000000;stop-opacity:1"
+         style="stop-color:#ff7f2a;stop-opacity:1"
          offset="1"
          id="stop10925" />
     </linearGradient>
@@ -82,7 +82,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -927,21 +927,42 @@
            fill="black"
            stroke-width="0"
            d="M830.59,360.34 H829.41 C829.31,359.58,828.95,357.52,828.5,357.17 C828.23,356.97,825.55,356.97,825.06,356.97 H818.64 C822.3,360.2,823.52,361.17,825.61,362.81 C828.19,364.88,830.59,367.03,830.59,370.34 C830.59,374.56,826.91,377.14,822.44,377.14 C818.12,377.14,815.19,374.11,815.19,370.91 C815.19,369.12,816.69,368.95,817.05,368.95 C817.88,368.95,818.89,369.55,818.89,370.8 C818.89,371.42,818.64,372.64,816.83,372.64 C817.91,375.11,820.28,375.88,821.92,375.88 C825.41,375.88,827.22,373.17,827.22,370.34 C827.22,367.31,825.06,364.91,823.94,363.66 L815.55,355.36 C815.19,355.05,815.19,354.97,815.19,354 H829.55 Z " /></g>    </g>
-    <text
-       inkscape:export-ydpi="90"
-       inkscape:export-xdpi="90"
-       inkscape:export-filename="/home/tuxflo/workspace/QT/QMemory_GUI/Pictures/Spanisch/2/11.png"
-       transform="scale(0.77876567,1.2840833)"
-       sodipodi:linespacing="125%"
-       id="text3176"
-       y="800.98999"
-       x="21.478436"
-       style="font-size:17.64763451px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       xml:space="preserve"><tspan
-         style="font-size:22.13224602px"
-         y="800.98999"
-         x="21.478436"
-         id="tspan3178"
-         sodipodi:role="line" /></text>
+    <g
+       id="g3192"
+       transform="matrix(0.65173045,0,0,0.8642542,8.8388347,136.05507)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text3180"
+         y="1026.8558"
+         x="-1.2138672"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="1026.8558"
+           x="-1.2138672"
+           id="tspan3182"
+           sodipodi:role="line"></tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3184"
+         y="1005.2047"
+         x="-1.2138672"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="1005.2047"
+           x="-1.2138672"
+           id="tspan3186"
+           sodipodi:role="line"></tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text3188"
+         y="981.39893"
+         x="-1.2138672"
+         style="font-size:22px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+         xml:space="preserve"><tspan
+           y="981.39893"
+           x="-1.2138672"
+           id="tspan3190"
+           sodipodi:role="line">La Paz</tspan></text>
+    </g>
   </g>
 </svg>

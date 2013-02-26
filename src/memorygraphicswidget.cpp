@@ -7,12 +7,10 @@ MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene
     _second(this),
     _end(this),
     _game_over(this),
-    _state(&_first)
+    _state(&_first),
+    _turned_card(false)
 {
     _grid = new QGraphicsGridLayout;
-    _cards = new Memory_Card**[_game->get_rows()];
-    for(int i=0; i< _game->get_rows(); i++)
-        _cards[i] = new Memory_Card*[_game->get_columns()];
     _game->set_cards();
     if(!_set_cards())
     {
@@ -29,15 +27,17 @@ bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
 
 bool MemoryGraphicsWidget::_set_cards()
 {
-    for(int r=0; r<_game->get_rows(); r++)
+    QPLayer *tmp_player = dynamic_cast<QPLayer*>(_game->get_active_player());
+    for(int i=0; i<_game->get_rows() * _game->get_columns(); i++)
     {
-        for(int c=0; c<_game->get_columns(); c++)
-        {
-            _cards[r][c] = new Memory_Card(r, c, _game->get_card(r, c), _game->get_cover());
-            connect(_cards[r][c], SIGNAL(selection_change(int, int, bool)), this, SLOT(selection_change(int,int, bool)));
-            connect(_cards[r][c], SIGNAL(clicked(int, int)), this, SLOT(turn_card(int, int)));
-            _grid->addItem(_cards[r][c], r, c);
-        }
+        int row = i/_game->get_columns();
+        int column = i - (row * _game->get_columns());
+        _cards.push_back(new Memory_Card(row, column, _game->get_card(i), _game->get_cover().c_str()));
+        _cards.at(i)->set_hover_color(tmp_player->get_color());
+
+        connect(_cards[i], SIGNAL(selection_change(int, int, bool)), this, SLOT(selection_change(int,int, bool)));
+        connect(_cards[i], SIGNAL(clicked(int, int)), this, SLOT(turn_card(int, int)));
+        _grid->addItem(_cards[i], row, column);
     }
     setLayout(_grid);
     return true;
@@ -50,15 +50,20 @@ void MemoryGraphicsWidget::selection_change(int row, int column, bool selected)
     QGraphicsItem *selected_item = _scene->selectedItems().first();
     Memory_Card *selected_card = qgraphicsitem_cast<Memory_Card *>(selected_item);
     selected_card->set_selected(false);
-    _cards[row][column]->set_selected(true);
+    _cards[row * _game->get_columns() + column]->set_selected(true);
 }
 
 void MemoryGraphicsWidget::turn_card(int row, int column)
 {
+    if(!_turned_card)
     //Turn the card in the view
-    _state->turn(row, column);
+        _state->turn(row, column);
+}
 
-    //Turn the card in the Engine
-    _game->turn(row, column);
-
+void MemoryGraphicsWidget::send_player_change()
+{
+    QPLayer *tmp_player = dynamic_cast<QPLayer*>(_game->get_active_player());
+    emit player_change();
+    for(int i=0; i<_cards.size();i++)
+        _cards.at(i)->set_hover_color(tmp_player->get_color());
 }

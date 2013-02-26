@@ -6,8 +6,10 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QGraphicsScene>
+#include <QVector>
 
 #include "include/i_memory.h"
+#include "include/qplayer.h"
 #include "include/memory_card.h"
 #include "include/qt_state.h"
 #include "include/qt_state_first.h"
@@ -29,7 +31,9 @@ private:
     QGraphicsGridLayout *_grid;
     QGraphicsScene *_scene;
     I_Memory *_game;
-    Memory_Card ***_cards;
+    QVector<Memory_Card*> _cards;
+    Memory_Card *_first_card;
+    Memory_Card *_second_card;
 
     bool _set_cards();
 
@@ -42,12 +46,17 @@ private:
 
     Qt_State *_state;
 
+    //For checking that the cards can not be turned if there are aready 2 turned cards
+    bool _turned_card;
+
 
 signals:
+    void player_change();
     
 public slots:
     void selection_change(int row, int column, bool selected);
     void turn_card(int row, int column);
+    void send_player_change();
 
     
 };

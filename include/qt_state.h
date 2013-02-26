@@ -8,6 +8,7 @@ class Qt_State
 {
 public:
     Qt_State(MemoryGraphicsWidget *widget);
+    virtual ~Qt_State(){}
     virtual void turn(int row, int column)=0;
 protected:
     MemoryGraphicsWidget *graphicswidget;

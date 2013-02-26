@@ -33,11 +33,15 @@ player_wizzard::~player_wizzard()
 
 void player_wizzard::on_add_player_button_clicked()
 {
-    QString playername = QInputDialog::getText(this, tr("New Player"),
-           tr("Enter Name for the new Player:"));
+    PlayerDialog dialog;
+    QColor tmp = dialog.getColor();
+    QString playername = dialog.get_player_name();
 
-       if (playername.isNull())
-           return;
+//    QString playername = QInputDialog::getText(this, tr("New Player"),
+//           tr("Enter Name for the new Player:"));
+
+//       if (playername.isNull())
+//           return;
 
 
        QListWidgetItem *newItem = new QListWidgetItem;
@@ -51,7 +55,7 @@ void player_wizzard::on_add_player_button_clicked()
        //Add the player to the Memory_Enigne
        QPLayer *player = new QPLayer(playername);
        player->set_icon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
-       player->set_color(Qt::darkGreen);
+       player->set_color(tmp);
        _game->add_player(player);
 
 }

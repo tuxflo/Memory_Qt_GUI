@@ -27,6 +27,9 @@ private:
     MemoryGraphicsWidget *_graphics_widget;
 
     I_Memory *_game;
+
+public slots:
+    void set_player();
 };
 
 #endif // MEMORY_WIDGET_H

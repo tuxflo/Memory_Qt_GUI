@@ -8,6 +8,10 @@ Qt_State_first::Qt_State_first(MemoryGraphicsWidget *widget) :
 void Qt_State_first::turn(int row, int column)
 {
     qDebug() << "in first turn state";
-    graphicswidget->_cards[row][column]->turn();
+    if(graphicswidget->_game->get_turned(row, column))
+        return;
+    graphicswidget->_game->turn(row, column);
+    graphicswidget->_first_card = graphicswidget->_cards[row * graphicswidget->_game->get_rows() + column];
+    graphicswidget->_first_card->turn();
     graphicswidget->_state = & graphicswidget->_second;
 }

@@ -22,6 +22,14 @@ Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path
     _picture_animation->setDuration(_duration);
     _cover_animation = new QPropertyAnimation(this, "rotationAngle");
     _cover_animation->setDuration(_duration);
+
+    //Drop shadow for highlighting the card
+    _shadow = new QGraphicsDropShadowEffect(this);
+    _shadow->setOffset(0,0);
+    _shadow->setBlurRadius(30);
+    _shadow->setEnabled(false);
+
+    setGraphicsEffect(_shadow);
 }
 
 Memory_Card::~Memory_Card()
@@ -132,12 +140,19 @@ void Memory_Card::set_duration(int duration)
 
 void Memory_Card::set_selected(bool selected)
 {
+    if(selected)
+        _shadow->setEnabled(true);
+    else
+        _shadow->setEnabled(false);
     setSelected(selected);
 }
 
 
 void Memory_Card::turn()
 {
+    //the card is already turned, do nothing
+    if(_turned)
+        return;
     _picture_animation->setStartValue(0);
     _picture_animation->setEndValue(90);
 
@@ -147,4 +162,32 @@ void Memory_Card::turn()
     connect(_picture_animation, SIGNAL(finished()), _cover_animation, SLOT(start()));
     _picture_animation->start();
     _turned = true;
+}
+
+void Memory_Card::turn_back()
+{
+    _turned = false;
+    _picture_animation->setStartValue(180);
+    _picture_animation->setEndValue(90);
+
+    _cover_animation->setStartValue(90);
+    _cover_animation->setEndValue(0);
+    _picture_animation->start();
+}
+
+
+void Memory_Card::set_row(int row)
+{
+    _row = row;
+}
+
+void Memory_Card::set_column(int column)
+{
+    _column = column;
+}
+
+
+void Memory_Card::set_hover_color(const QColor &color)
+{
+    _shadow->setColor(color);
 }

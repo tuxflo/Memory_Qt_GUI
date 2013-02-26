@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+         += svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,7 +29,12 @@ SOURCES += main.cpp \
     src/card_set_wizzard.cpp \
     src/main_menu.cpp \
     src/qplayer.cpp \
-    src/memorygraphicswidget.cpp
+    src/memorygraphicswidget.cpp \
+    src/qt_state.cpp \
+    src/qt_state_first.cpp \
+    src/qt_state_second.cpp \
+    src/qt_state_end.cpp \
+    src/qt_state_game_over.cpp
 
 HEADERS  += mainwindow.h \
     include/mainwindow.h \
@@ -39,7 +45,12 @@ HEADERS  += mainwindow.h \
     include/card_set_wizzard.h \
     include/main_menu.h \
     include/qplayer.h \
-    include/memorygraphicswidget.h
+    include/memorygraphicswidget.h \
+    include/qt_state.h \
+    include/qt_state_first.h \
+    include/qt_state_second.h \
+    include/qt_state_end.h \
+    include/qt_state_game_over.h
 
 FORMS    += forms/mainwindow.ui \
     forms/memory_widget.ui \

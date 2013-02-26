@@ -29,6 +29,8 @@ public:
 
 
     void set_picture(const QString& picture_path);
+    void set_row(int row);
+    void set_column(int column);
     void set_cover(const QString& cover_path);
     void set_hover_color(const QColor& color);
 
@@ -71,7 +73,6 @@ private:
     QSvgRenderer *_current;
 
     //Each player has its own hover color
-    QColor _color;
     QGraphicsDropShadowEffect *_shadow;
 
     //For setting the turning animation

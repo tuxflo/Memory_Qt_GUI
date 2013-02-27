@@ -6,6 +6,7 @@
 
 #include "include/i_memory.h"
 #include "include/qplayer.h"
+#include "include/newplayerdialog.h"
 
 namespace Ui {
 class player_wizzard;

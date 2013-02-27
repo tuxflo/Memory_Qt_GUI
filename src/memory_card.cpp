@@ -181,9 +181,19 @@ void Memory_Card::set_row(int row)
     _row = row;
 }
 
+int Memory_Card::get_row()
+{
+    return _row;
+}
+
 void Memory_Card::set_column(int column)
 {
     _column = column;
+}
+
+int Memory_Card::get_column()
+{
+    return _column;
 }
 
 

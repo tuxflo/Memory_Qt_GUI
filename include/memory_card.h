@@ -30,7 +30,9 @@ public:
 
     void set_picture(const QString& picture_path);
     void set_row(int row);
+    int get_row();
     void set_column(int column);
+    int get_column();
     void set_cover(const QString& cover_path);
     void set_hover_color(const QColor& color);
 

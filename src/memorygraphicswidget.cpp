@@ -17,12 +17,61 @@ MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene
         QMessageBox::critical(0, tr("Error"),
                                        tr("Setting cards failed. Please send a bugreport to the contact listet in About or help"),QMessageBox::Ok);
     }
-
+    _scene->installEventFilter(this);
 }
 
 bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
 {
     //Handle Keyboard commands
+    if(event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent *key = static_cast<QKeyEvent *>(event);
+        if(_scene->selectedItems().isEmpty())
+        {
+            selection_change(0, 0, true);
+            return true;
+        }
+        QGraphicsItem *selected_item = _scene->selectedItems().first();
+        Memory_Card *selected_card = qgraphicsitem_cast<Memory_Card *>(selected_item);
+        switch(key->key())
+        {
+            case Qt::Key_Space:
+            qDebug() << "Space";
+            turn_card(selected_card->get_row(), selected_card->get_column());
+            break;
+        case Qt::Key_Left:
+            if(selected_card->get_column() > 0)
+            {
+            selection_change(selected_card->get_row(), selected_card->get_column(), false);
+            selection_change(selected_card->get_row(), selected_card->get_column()-1, true);
+            }
+
+            break;
+        case Qt::Key_Right:
+            if(selected_card->get_column() < _game->get_columns()-1)
+            {
+            selection_change(selected_card->get_row(), selected_card->get_column(), false);
+            selection_change(selected_card->get_row(), selected_card->get_column()+1, true);
+            }
+            break;
+        case Qt::Key_Up:
+            if(selected_card->get_row() > 0)
+            {
+            selection_change(selected_card->get_row(), selected_card->get_column(), false);
+            selection_change(selected_card->get_row()-1, selected_card->get_column(), true);
+            }
+            break;
+        case Qt::Key_Down:
+            if(selected_card->get_row() < _game->get_columns()-1)
+            {
+            selection_change(selected_card->get_row(), selected_card->get_column(), false);
+            selection_change(selected_card->get_row()+1, selected_card->get_column(), true);
+            }
+            break;
+        }
+        return true;
+    }
+    return false;
 }
 
 bool MemoryGraphicsWidget::_set_cards()
@@ -39,6 +88,9 @@ bool MemoryGraphicsWidget::_set_cards()
         connect(_cards[i], SIGNAL(clicked(int, int)), this, SLOT(turn_card(int, int)));
         _grid->addItem(_cards[i], row, column);
     }
+    //Set focus on the first item
+    _scene->setFocusItem(_cards[0]);
+    _cards[0]->set_selected(true);
     setLayout(_grid);
     return true;
 }

@@ -4,7 +4,7 @@ Memory_Card::Memory_Card()
 {
 }
 
-Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path,  QObject *parent) :
+Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path) :
     _row(row),
     _column(column),
     _duration(400),
@@ -86,20 +86,20 @@ void Memory_Card::mousePressEvent(QGraphicsSceneMouseEvent *event)
 //        _turned = false;
 //    }
 //    update();
-    emit selection_change(_row, _column, true);
+    emit selection_change(_row, _column);
     emit clicked(_row, _column);
     event->setAccepted(true);
 }
 
 void Memory_Card::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    emit selection_change(_row, _column, true);
+    emit selection_change(_row, _column);
     event->setAccepted(true);
 }
 
 void Memory_Card::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
-    emit selection_change(_row, _column, false);
+    emit selection_change(_row, _column);
     event->setAccepted(true);
 }
 

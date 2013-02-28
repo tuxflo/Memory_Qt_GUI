@@ -1,6 +1,6 @@
 #include "include/memorygraphicswidget.h"
 
-MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene, QObject *parent) :
+MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene) :
     _game(game),
     _scene(scene),
     _first(this),
@@ -22,13 +22,14 @@ MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene
 
 bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
 {
+    Q_UNUSED(object)
     //Handle Keyboard commands
     if(event->type() == QEvent::KeyPress)
     {
         QKeyEvent *key = static_cast<QKeyEvent *>(event);
         if(_scene->selectedItems().isEmpty())
         {
-            selection_change(0, 0, true);
+            selection_change(0, 0);
             return true;
         }
         QGraphicsItem *selected_item = _scene->selectedItems().first();
@@ -42,30 +43,30 @@ bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
         case Qt::Key_Left:
             if(selected_card->get_column() > 0)
             {
-            selection_change(selected_card->get_row(), selected_card->get_column(), false);
-            selection_change(selected_card->get_row(), selected_card->get_column()-1, true);
+            selection_change(selected_card->get_row(), selected_card->get_column());
+            selection_change(selected_card->get_row(), selected_card->get_column()-1);
             }
 
             break;
         case Qt::Key_Right:
             if(selected_card->get_column() < _game->get_columns()-1)
             {
-            selection_change(selected_card->get_row(), selected_card->get_column(), false);
-            selection_change(selected_card->get_row(), selected_card->get_column()+1, true);
+            selection_change(selected_card->get_row(), selected_card->get_column());
+            selection_change(selected_card->get_row(), selected_card->get_column()+1);
             }
             break;
         case Qt::Key_Up:
             if(selected_card->get_row() > 0)
             {
-            selection_change(selected_card->get_row(), selected_card->get_column(), false);
-            selection_change(selected_card->get_row()-1, selected_card->get_column(), true);
+            selection_change(selected_card->get_row(), selected_card->get_column());
+            selection_change(selected_card->get_row()-1, selected_card->get_column());
             }
             break;
         case Qt::Key_Down:
             if(selected_card->get_row() < _game->get_columns()-1)
             {
-            selection_change(selected_card->get_row(), selected_card->get_column(), false);
-            selection_change(selected_card->get_row()+1, selected_card->get_column(), true);
+            selection_change(selected_card->get_row(), selected_card->get_column());
+            selection_change(selected_card->get_row()+1, selected_card->get_column());
             }
             break;
         }
@@ -95,7 +96,7 @@ bool MemoryGraphicsWidget::_set_cards()
         _cards.push_back(new Memory_Card(row, column, _game->get_card(i), _game->get_cover().c_str()));
         _cards.at(i)->set_hover_color(tmp_player->get_color());
 
-        connect(_cards[i], SIGNAL(selection_change(int, int, bool)), this, SLOT(selection_change(int,int, bool)));
+        connect(_cards[i], SIGNAL(selection_change(int, int)), this, SLOT(selection_change(int,int)));
         connect(_cards[i], SIGNAL(clicked(int, int)), this, SLOT(turn_card(int, int)));
         _grid->addItem(_cards[i], row, column);
     }
@@ -107,7 +108,7 @@ bool MemoryGraphicsWidget::_set_cards()
     return true;
 }
 
-void MemoryGraphicsWidget::selection_change(int row, int column, bool selected)
+void MemoryGraphicsWidget::selection_change(int row, int column)
 {
     if(_scene->selectedItems().isEmpty())
         return;

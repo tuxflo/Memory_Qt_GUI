@@ -30,10 +30,14 @@ private slots:
 
     void on_set_icon_clicked();
 
+    void enable_ok_button(QString);
+
 private:
     Ui::NewPlayerDialog *ui;
     QColor _color;
     QIcon _icon;
+    //Pointer to the ok button
+    QPushButton *_ok_button;
 };
 
 #endif // NEWPLAYERDIALOG_H

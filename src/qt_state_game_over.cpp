@@ -7,6 +7,6 @@ Qt_State_game_over::Qt_State_game_over(MemoryGraphicsWidget *widget) :
 
 void Qt_State_game_over::turn(int row, int column)
 {
-    qDebug() << "Game over!";
+    qDebug() << "Game over!" << "row: " << row << "column: " << column;
     qDebug() << "Start animation, show highscore, ask for new game...";
 }

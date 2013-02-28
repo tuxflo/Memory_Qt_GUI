@@ -59,8 +59,6 @@
     </layout>
    </item>
   </layout>
-  <zorder>widget</zorder>
-  <zorder>horizontalSpacer</zorder>
  </widget>
  <resources/>
  <connections/>

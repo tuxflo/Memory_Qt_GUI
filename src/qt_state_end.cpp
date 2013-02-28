@@ -12,7 +12,7 @@ Qt_State_end::~Qt_State_end()
 
 void Qt_State_end::turn(int row, int column)
 {
-    qDebug() << "End turn state check if the cards match!";
+    qDebug() << "End turn state check if the cards match!" << "row: " << row << "column: " << column ;
     bool game_over = false;
     if(graphicswidget->_game->get_recieved_points() > 0)
     {

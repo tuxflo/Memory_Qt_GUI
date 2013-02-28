@@ -24,15 +24,16 @@ class MemoryGraphicsWidget : public QGraphicsWidget
     friend class Qt_State_second;
     friend class Qt_State_end;
 public:
-    explicit MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene, QObject *parent = 0);
+    explicit MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene);
     bool eventFilter(QObject *object, QEvent *event);
     void resizeEvent(QSize newsize);
 
 protected:
 private:
+    I_Memory *_game;
     QGraphicsGridLayout *_grid;
     QGraphicsScene *_scene;
-    I_Memory *_game;
+
     QVector<Memory_Card*> _cards;
     Memory_Card *_first_card;
     Memory_Card *_second_card;
@@ -56,7 +57,7 @@ signals:
     void player_change();
     
 public slots:
-    void selection_change(int row, int column, bool selected);
+    void selection_change(int row, int column);
     void turn_card(int row, int column);
     void send_player_change();
 

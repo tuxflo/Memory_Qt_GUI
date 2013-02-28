@@ -91,3 +91,16 @@ void MainWindow::on_actionExit_triggered()
 {
     _quit();
 }
+
+void MainWindow::on_actionNew_Game_triggered()
+{
+    if(!_memory_widget)
+        delete _memory_widget;
+    if(!_card_wizzard)
+        delete _card_wizzard;
+    if(!_player_wizzard)
+        delete _player_wizzard;
+    _player_wizzard = 0;
+    _new_game_wizzard();
+
+}

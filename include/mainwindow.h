@@ -32,6 +32,8 @@ private slots:
 
     void on_actionExit_triggered();
 
+    void on_actionNew_Game_triggered();
+
 private:
     Ui::MainWindow *ui;
     player_wizzard *_player_wizzard;

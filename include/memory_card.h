@@ -24,7 +24,7 @@ class Memory_Card : public QGraphicsObject, public QGraphicsLayoutItem
     Q_PROPERTY(qreal rotationAngle READ rotationAngle WRITE setRotationAngle) //Is needed for the turning animation
 public:
     explicit Memory_Card();
-    Memory_Card(int row, int column, Card* card, std::string cover_path, QObject *parent=0);
+    Memory_Card(int row, int column, Card* card, std::string cover_path);
     ~Memory_Card();
 
 
@@ -68,6 +68,9 @@ protected:
     qreal rotationAngle() const;
 
 private:
+    //Each card should know where it is so save the values for row and column
+    int _row;
+    int _column;
     //Each card has a front and a cover picture
     QSvgRenderer *_picture;
     QSvgRenderer *_cover;
@@ -82,9 +85,7 @@ private:
     int _duration;
     QPropertyAnimation *_picture_animation;
     QPropertyAnimation *_cover_animation;
-    //Each card should know where it is so save the values for row and column
-    int _row;
-    int _column;
+
 
     //For the rotationAngle property
     qreal _rotationAngle;
@@ -101,7 +102,7 @@ signals:
     void clicked(int, int);
 
     //Signal that the current card is selected/deselected
-    void selection_change(int, int, bool);
+    void selection_change(int, int);
     
 public slots:
     //Set the rotationAngle

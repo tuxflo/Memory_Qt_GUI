@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QIcon>
 #include <QFileDialog>
+#include <QFrame>
 
 namespace Ui {
 class NewPlayerDialog;
@@ -22,6 +23,7 @@ public:
     QString get_name();
     QColor get_color();
     QIcon get_icon();
+    void resizeEvent(QResizeEvent *event);
 
 private slots:
     void on_set_color_clicked();

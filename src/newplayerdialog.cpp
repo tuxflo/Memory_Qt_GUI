@@ -11,7 +11,7 @@ NewPlayerDialog::NewPlayerDialog(QWidget *parent) :
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
-    QPixmap pix(ui->icon->size());
+    QPixmap pix(ui->color->size().width(), ui->color->size().height());
     int r = qrand()%255;
     int g = qrand()%255;
     int b = qrand()%255;
@@ -39,6 +39,14 @@ QColor NewPlayerDialog::get_color()
 QIcon NewPlayerDialog::get_icon()
 {
     return _icon;
+}
+
+void NewPlayerDialog::resizeEvent(QResizeEvent *event)
+{
+    QPixmap pix(ui->color->size());
+    pix.fill(_color);
+    ui->color->setPixmap(pix);
+    ui->icon->setPixmap(_icon.pixmap(ui->icon->size(), QIcon::Normal, QIcon::On));
 }
 
 void NewPlayerDialog::on_set_color_clicked()

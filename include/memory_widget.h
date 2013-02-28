@@ -20,6 +20,8 @@ class Memory_Widget : public QWidget
 public:
     explicit Memory_Widget(I_Memory *game, QWidget *parent = 0);
     ~Memory_Widget();
+protected:
+    void resizeEvent(QResizeEvent *event);
     
 private:
     Ui::Memory_Widget *ui;

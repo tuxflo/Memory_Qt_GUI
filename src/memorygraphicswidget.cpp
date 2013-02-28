@@ -74,6 +74,17 @@ bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
     return false;
 }
 
+void MemoryGraphicsWidget::resizeEvent(QSize newsize)
+{
+//    qDebug() << "resize event!" << _scene->width() << " " << _scene->height();
+//    for(int i=0; i<_game->get_rows()*_game->get_columns(); i++)
+//    {
+//        _grid->setColumnFixedWidth(i/_game->get_columns(), newsize.width() /(_game->get_columns()+2));
+//        _grid->setRowFixedHeight(i - (i/_game->get_columns() * _game->get_rows()), newsize.height()/(_game->get_rows()+2));
+//        _cards.at(i)->set_size(newsize.width()/(_game->get_columns()+2), newsize.height()/(_game->get_rows()+2));
+//    }
+}
+
 bool MemoryGraphicsWidget::_set_cards()
 {
     QPLayer *tmp_player = dynamic_cast<QPLayer*>(_game->get_active_player());
@@ -92,6 +103,7 @@ bool MemoryGraphicsWidget::_set_cards()
     _scene->setFocusItem(_cards[0]);
     _cards[0]->set_selected(true);
     setLayout(_grid);
+
     return true;
 }
 

@@ -13,18 +13,23 @@ Qt_State_end::~Qt_State_end()
 void Qt_State_end::turn(int row, int column)
 {
     qDebug() << "End turn state check if the cards match!";
+    bool game_over = false;
     if(graphicswidget->_game->get_recieved_points() > 0)
     {
         //The cards match!
         if(graphicswidget->_game->get_game_over())
+        {
+            game_over = true;
             graphicswidget->_state = &graphicswidget->_game_over;
+        }
         graphicswidget->_turned_card = false;
     }
     else
     {
         QTimer::singleShot(1500, this, SLOT(turn_back()));
     }
-    graphicswidget->_state = &graphicswidget->_first;
+    if(!game_over)
+        graphicswidget->_state = &graphicswidget->_first;
 }
 
 void Qt_State_end::turn_back()

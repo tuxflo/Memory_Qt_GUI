@@ -44,7 +44,10 @@ QIcon NewPlayerDialog::get_icon()
 void NewPlayerDialog::on_set_color_clicked()
 {
     QPixmap pix(100,100);
-    _color = QColorDialog::getColor();
+    QColorDialog colordialog;
+    if(colordialog.exec() == QDialog::Rejected)
+        return;
+    _color = colordialog.selectedColor();
     pix.fill(_color);
     ui->color->setPixmap(pix);
 }

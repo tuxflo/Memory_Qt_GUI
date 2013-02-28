@@ -53,6 +53,7 @@ void MainWindow::_new_game()
     //setCentralWidget(_memory_widget);
     _stacked_widget->insertWidget(3, _memory_widget);
     _stacked_widget->setCurrentIndex(3);
+    setMinimumSize(_memory_widget->geometry().size());
 }
 
 void MainWindow::_help()

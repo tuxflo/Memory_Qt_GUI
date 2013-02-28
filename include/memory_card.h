@@ -47,6 +47,7 @@ public:
     void set_duration(int duration);
 
     //Size is needed for resizing the grid
+    void set_size(int w, int h);
     QSize get_size();
 
 protected:

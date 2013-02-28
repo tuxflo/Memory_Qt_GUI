@@ -33,19 +33,18 @@ player_wizzard::~player_wizzard()
 
 void player_wizzard::on_add_player_button_clicked()
 {
-       NewPlayerDialog dialog;
+       NewPlayerDialog playerdialog;
        //Return if the Player hit cancel button
-       if(dialog.exec() == QDialog::Rejected)
+       if(playerdialog.exec() == QDialog::Rejected)
            return;
 
-       QString playername = dialog.get_name() ;
+       QString playername = playerdialog.get_name() ;
        //Return if there is no playername entered
        if(playername.isEmpty())
            return;
-       QColor tmp = dialog.get_color();
        QListWidgetItem *newItem = new QListWidgetItem;
        newItem->setText(playername);
-       newItem->setTextColor(tmp);
+       newItem->setTextColor(playerdialog.get_color());
        newItem->setIcon(QIcon("/home/tuxflo/Pictures/joris_mosh.JPG"));
 
        int row = ui->listWidget->row(ui->listWidget->currentItem());
@@ -55,8 +54,8 @@ void player_wizzard::on_add_player_button_clicked()
        //Add the player to the Memory_Enigne
        QPLayer *player = new QPLayer(playername);
        //Set the icon of the player
-       player->set_icon(dialog.get_icon());
-       player->set_color(tmp);
+       player->set_icon(playerdialog.get_icon());
+       player->set_color(playerdialog.get_color());
        _game->add_player(player);
 
 }

@@ -26,7 +26,7 @@ Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path
     //Drop shadow for highlighting the card
     _shadow = new QGraphicsDropShadowEffect(this);
     _shadow->setOffset(0,0);
-    _shadow->setBlurRadius(30);
+    _shadow->setBlurRadius(40);
     _shadow->setEnabled(false);
 
     setGraphicsEffect(_shadow);
@@ -135,6 +135,17 @@ qreal Memory_Card::rotationAngle() const
 void Memory_Card::set_duration(int duration)
 {
     _duration = duration/2;
+}
+
+void Memory_Card::set_size(int w, int h)
+{
+    _size.setHeight(h);
+    _size.setWidth(w);
+}
+
+QSize Memory_Card::get_size()
+{
+    return _size;
 }
 
 

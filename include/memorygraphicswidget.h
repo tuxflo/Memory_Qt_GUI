@@ -26,6 +26,8 @@ class MemoryGraphicsWidget : public QGraphicsWidget
 public:
     explicit MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene, QObject *parent = 0);
     bool eventFilter(QObject *object, QEvent *event);
+    void resizeEvent(QSize newsize);
+
 protected:
 private:
     QGraphicsGridLayout *_grid;

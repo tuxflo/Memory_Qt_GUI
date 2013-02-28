@@ -26,6 +26,10 @@ Memory_Widget::Memory_Widget(I_Memory *game, QWidget *parent) :
 
 Memory_Widget::~Memory_Widget()
 {
+    qDebug() << "MemoryWidget Destructor!";
+
+    delete _graphics_widget;
+    delete _scene;
     delete ui;
 }
 

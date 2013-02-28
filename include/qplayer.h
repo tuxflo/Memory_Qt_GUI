@@ -2,6 +2,7 @@
 #define QPLAYER_H
 #include <QString>
 #include <QIcon>
+#include <QDebug>
 #include "include/player.h"
 
 //QPLayer is used for handeling the players of the Memory_Qt_GUI
@@ -12,7 +13,7 @@ class QPLayer : public Player
 public:
     QPLayer();
     QPLayer(QString name);
-    ~QPLayer(){}
+    ~QPLayer();
     void set_color(const QColor& color);
     QColor get_color();
     void set_icon(const QIcon& icon);

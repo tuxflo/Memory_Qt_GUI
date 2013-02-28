@@ -9,6 +9,11 @@ QPLayer::QPLayer(QString name) :
 {
 }
 
+QPLayer::~QPLayer()
+{
+    qDebug() << "QPlayer Destructor!";
+}
+
 void QPLayer::set_color(const QColor &color)
 {
     _color = color;

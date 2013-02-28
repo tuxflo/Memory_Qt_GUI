@@ -10,6 +10,7 @@ Main_Menu::Main_Menu(QWidget *parent) :
 
 Main_Menu::~Main_Menu()
 {
+    qDebug() << "Main_Menu Destructor!";
     delete ui;
 }
 

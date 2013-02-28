@@ -2,6 +2,7 @@
 #define MAIN_MENU_H
 
 #include <QWidget>
+#include <QDebug>
 
 namespace Ui {
 class Main_Menu;

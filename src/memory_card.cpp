@@ -9,7 +9,8 @@ Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path
     _column(column),
     _duration(400),
     _size(150, 150),
-    _turned(false)
+    _turned(false),
+    _rotationAngle(0)
 {
     _picture = new QSvgRenderer(QString(card->get_filename().c_str()), this);
     _cover = new QSvgRenderer(QString(cover_path.c_str()), this);
@@ -35,6 +36,12 @@ Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path
 Memory_Card::~Memory_Card()
 {
     //Do some cleanup here
+    qDebug() << "MemoryCards Destructor!";
+    delete _picture_animation;
+    delete _cover_animation;
+    delete _shadow;
+    delete _picture;
+    delete _cover;
 }
 
 QSizeF Memory_Card::sizeHint(Qt::SizeHint which, const QSizeF &constraint) const

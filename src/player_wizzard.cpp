@@ -28,6 +28,8 @@ player_wizzard::player_wizzard(I_Memory *game, QWidget *parent) :
 
 player_wizzard::~player_wizzard()
 {
+    qDebug() << "PlayerWizzard Destructor!";
+
     delete ui;
 }
 
@@ -57,7 +59,6 @@ void player_wizzard::on_add_player_button_clicked()
        player->set_icon(playerdialog.get_icon());
        player->set_color(playerdialog.get_color());
        _game->add_player(player);
-
 }
 
 void player_wizzard::on_remove_player_button_clicked()

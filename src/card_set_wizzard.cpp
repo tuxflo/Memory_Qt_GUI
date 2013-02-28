@@ -43,10 +43,13 @@ Card_Set_Wizzard::Card_Set_Wizzard(I_Memory *game, QWidget *parent) :
             }
         }
         connect(ui->listWidget, SIGNAL(itemSelectionChanged()), this, SLOT(_set_num_of_cards()));
+
 }
 
 Card_Set_Wizzard::~Card_Set_Wizzard()
 {
+    qDebug() << "Card_Set_Wizzard Destructor!";
+    delete _item_list;
     delete ui;
 }
 

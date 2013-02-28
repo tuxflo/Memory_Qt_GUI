@@ -20,6 +20,13 @@ MemoryGraphicsWidget::MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene
     _scene->installEventFilter(this);
 }
 
+MemoryGraphicsWidget::~MemoryGraphicsWidget()
+{
+    qDebug() << "MemoryGraphicsWidget Destructor!";
+    for(int i=0; i< _cards.size(); i++)
+        delete _cards.at(i);
+}
+
 bool MemoryGraphicsWidget::eventFilter(QObject *object, QEvent *event)
 {
     Q_UNUSED(object)

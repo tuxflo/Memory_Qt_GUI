@@ -25,6 +25,7 @@ class MemoryGraphicsWidget : public QGraphicsWidget
     friend class Qt_State_end;
 public:
     explicit MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene);
+    ~MemoryGraphicsWidget();
     bool eventFilter(QObject *object, QEvent *event);
     void resizeEvent(QSize newsize);
 

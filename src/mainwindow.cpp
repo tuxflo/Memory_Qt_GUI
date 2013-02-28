@@ -10,6 +10,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     _game = new Memory;
 
+    //Set the widget pointer to 0
+    _memory_widget = 0;
+    _player_wizzard = 0;
+    _card_wizzard = 0;
+
 
 
     _stacked_widget = new QStackedWidget(this);
@@ -28,6 +33,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    qDebug() << "MainWindow Destructor!";
+    delete _game;
+    if(!_memory_widget)
+        delete _memory_widget;
     delete ui;
 }
 

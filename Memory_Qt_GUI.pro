@@ -35,7 +35,8 @@ SOURCES += main.cpp \
     src/qt_state_second.cpp \
     src/qt_state_end.cpp \
     src/qt_state_game_over.cpp \
-    src/newplayerdialog.cpp
+    src/newplayerdialog.cpp \
+    src/highscoredialog.cpp
 
 HEADERS  += mainwindow.h \
     include/mainwindow.h \
@@ -52,14 +53,16 @@ HEADERS  += mainwindow.h \
     include/qt_state_second.h \
     include/qt_state_end.h \
     include/qt_state_game_over.h \
-    include/newplayerdialog.h
+    include/newplayerdialog.h \
+    include/highscoredialog.h
 
 FORMS    += forms/mainwindow.ui \
     forms/memory_widget.ui \
     forms/player_wizzard.ui \
     forms/card_set_wizzard.ui \
     forms/main_menu.ui \
-    forms/newplayerdialog.ui
+    forms/newplayerdialog.ui \
+    forms/highscoredialog.ui
 
 INCLUDEPATH += ../Memory_Engine/
 

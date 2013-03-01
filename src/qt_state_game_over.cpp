@@ -23,6 +23,37 @@ void Qt_State_game_over::turn(int row, int column)
     timer = new QTimer;
     connect(timer, SIGNAL(timeout()), this, SLOT(hover_next()));
     timer->start(300);
+
+    //Create highscore
+    QSettings settings("tuxflo", "Memory_Qt_GUI");
+    settings.beginGroup("highscore");
+    settings.remove("");
+    int size = settings.beginReadArray("highscore");
+    settings.endArray();
+    settings.beginWriteArray("highscore");
+    for (int i = 0; i < graphicswidget->_game->get_num_of_players(); ++i)
+    {
+        settings.setArrayIndex(i+size);
+        QPLayer *player = dynamic_cast<QPLayer*>(graphicswidget->_game->get_player_at(i));
+        QVariant a = qVariantFromValue(player);
+        settings.setValue("player", a);
+    }
+    settings.endArray();
+    settings.endGroup();
+
+    //Read highscore (unsorted)
+    settings.beginGroup("highscore");
+    int size2 = settings.beginReadArray("highscore");
+    for (int i = 0; i < size2; ++i)
+    {
+        settings.setArrayIndex(i);
+        QPLayer *c = settings.value("player").value<QPLayer*>();
+        qDebug() << "Player: " << c->get_name().c_str() << "Color: " << c->get_color();
+    }
+    settings.endArray();
+    settings.endGroup();
+    HighscoreDialog highscore;
+    highscore.exec();
 }
 
 void Qt_State_game_over::hover_next()

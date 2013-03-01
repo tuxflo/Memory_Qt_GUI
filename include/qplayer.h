@@ -24,5 +24,7 @@ private:
     QIcon _icon;
     QColor _color;
 };
+Q_DECLARE_METATYPE(QPLayer*)
+
 
 #endif // QPLAYER_H

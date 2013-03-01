@@ -3,6 +3,7 @@
 
 #include <QTimer>
 #include "include/qt_state.h"
+#include "include/highscoredialog.h"
 
 class Qt_State_game_over : public QObject, public Qt_State
 {

@@ -71,7 +71,9 @@ void Card_Set_Wizzard::_set_num_of_cards()
         int num = _game->get_possible_num_cards();
         if(num%2 == 0)
         {
-            ui->spinBox->setValue(_game->get_possible_num_cards());
+            //ui->spinBox->setValue(_game->get_possible_num_cards());
+            //Just for testing
+            ui->spinBox->setValue(4);
             ui->spinBox->setMaximum(_game->get_possible_num_cards());
         }
         else

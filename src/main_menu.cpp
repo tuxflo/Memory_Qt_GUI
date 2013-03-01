@@ -28,3 +28,15 @@ void Main_Menu::on_exit_button_clicked()
 {
     emit quit();
 }
+
+void Main_Menu::on_settings_button_clicked()
+{
+    QSettings settings("tuxflo", "Memory_Qt_GUI");
+    settings.beginGroup("Card Settings");
+    int duration = 200;
+    settings.setValue("duration",duration);
+    int delay = 300;
+    settings.setValue("cards delay", duration*2+delay);
+    settings.endGroup();
+    qDebug() << "Saved settings";
+}

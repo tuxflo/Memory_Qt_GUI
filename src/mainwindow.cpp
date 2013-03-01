@@ -8,12 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     _card_wizzard(0)
 {
     ui->setupUi(this);
-    _game = new Memory;
-
     //Set the widget pointer to 0
     _memory_widget = 0;
     _player_wizzard = 0;
     _card_wizzard = 0;
+    _game = 0;
 
 
 
@@ -82,6 +81,8 @@ void MainWindow::_back()
 
 void MainWindow::_new_game_wizzard()
 {
+    if(_game == 0)
+        _game = new Memory;
     if(_player_wizzard == 0)
     {
         //There was no player_wizard before
@@ -103,13 +104,26 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionNew_Game_triggered()
 {
-    if(!_memory_widget)
+    if(_memory_widget != 0)
+    {
         delete _memory_widget;
-    if(!_card_wizzard)
+        _memory_widget = 0;
+    }
+    if(_card_wizzard != 0)
+    {
         delete _card_wizzard;
-    if(!_player_wizzard)
+        _card_wizzard = 0;
+    }
+    if(_player_wizzard != 0)
+    {
         delete _player_wizzard;
-    _player_wizzard = 0;
+        _player_wizzard = 0;
+    }
+    if(_game != 0)
+    {
+        delete _game;
+        _game = 0;
+    }
     _new_game_wizzard();
 
 }

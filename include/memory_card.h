@@ -9,6 +9,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPropertyAnimation>
 #include <QPainter>
+#include <QSettings>
 #include <QDebug>
 
 #include <string>

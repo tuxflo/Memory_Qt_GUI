@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTimer>
+#include <QSettings>
 
 #include "include/qt_state.h"
 class Qt_State_end : public QObject, public Qt_State

@@ -21,15 +21,23 @@ void Qt_State_end::turn(int row, int column)
         {
             game_over = true;
             graphicswidget->_state = &graphicswidget->_game_over;
+            graphicswidget->_state->turn(0,0);
         }
         graphicswidget->_turned_card = false;
     }
     else
     {
-        QTimer::singleShot(1500, this, SLOT(turn_back()));
+        QSettings settings("tuxflo", "Memory_Qt_GUI");
+        settings.beginGroup("Card Settings");
+        int delay = settings.value("cards delay").toInt();
+        settings.endGroup();
+        qDebug() << "Loaded setting cards delay: " << delay;
+        QTimer::singleShot(delay, this, SLOT(turn_back()));
     }
     if(!game_over)
         graphicswidget->_state = &graphicswidget->_first;
+    graphicswidget->send_player_change();
+
 }
 
 void Qt_State_end::turn_back()
@@ -38,5 +46,4 @@ void Qt_State_end::turn_back()
     graphicswidget->_first_card->turn_back();
     graphicswidget->_second_card->turn_back();
     graphicswidget->_turned_card = false;
-    graphicswidget->send_player_change();
 }

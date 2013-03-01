@@ -6,6 +6,10 @@ Qt_State_second::Qt_State_second(MemoryGraphicsWidget *widget) :
 {
 }
 
+Qt_State_second::~Qt_State_second()
+{
+}
+
 void Qt_State_second::turn(int row, int column)
 {
     qDebug() << "in second turn state";

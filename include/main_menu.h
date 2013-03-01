@@ -2,6 +2,7 @@
 #define MAIN_MENU_H
 
 #include <QWidget>
+#include <QSettings>
 #include <QDebug>
 
 namespace Ui {
@@ -25,6 +26,8 @@ private slots:
     void on_Help_button_clicked();
 
     void on_exit_button_clicked();
+
+    void on_settings_button_clicked();
 
 private:
     Ui::Main_Menu *ui;

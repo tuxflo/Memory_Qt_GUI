@@ -23,6 +23,7 @@ class MemoryGraphicsWidget : public QGraphicsWidget
     friend class Qt_State_first;
     friend class Qt_State_second;
     friend class Qt_State_end;
+    friend class Qt_State_game_over;
 public:
     explicit MemoryGraphicsWidget(I_Memory *game, QGraphicsScene *scene);
     ~MemoryGraphicsWidget();

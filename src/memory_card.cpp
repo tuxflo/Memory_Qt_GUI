@@ -7,10 +7,10 @@ Memory_Card::Memory_Card()
 Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path) :
     _row(row),
     _column(column),
-    _duration(400),
     _size(150, 150),
-    _turned(false),
-    _rotationAngle(0)
+    _rotationAngle(0),
+    _turned(false)
+
 {
     _picture = new QSvgRenderer(QString(card->get_filename().c_str()), this);
     _cover = new QSvgRenderer(QString(cover_path.c_str()), this);
@@ -19,6 +19,11 @@ Memory_Card::Memory_Card(int row, int column, Card* card, std::string cover_path
     setFlag(QGraphicsItem::ItemIsSelectable);
     setAcceptHoverEvents(true);
 
+    QSettings settings("tuxflo", "Memory_Qt_GUI");
+    qDebug() << "Loaded setting";
+    settings.beginGroup("Card Settings");
+    _duration = settings.value("duration").toInt();
+    settings.endGroup();
     _picture_animation = new QPropertyAnimation(this, "rotationAngle");
     _picture_animation->setDuration(_duration);
     _cover_animation = new QPropertyAnimation(this, "rotationAngle");

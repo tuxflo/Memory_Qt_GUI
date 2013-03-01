@@ -7,6 +7,7 @@ class Qt_State_first : public Qt_State
 {
 public:
     Qt_State_first(MemoryGraphicsWidget *widget);
+    ~Qt_State_first();
     void turn(int row, int column);
 };
 

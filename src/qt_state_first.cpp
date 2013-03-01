@@ -5,6 +5,10 @@ Qt_State_first::Qt_State_first(MemoryGraphicsWidget *widget) :
 { 
 }
 
+Qt_State_first::~Qt_State_first()
+{
+}
+
 void Qt_State_first::turn(int row, int column)
 {
     qDebug() << "in first turn state";

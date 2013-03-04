@@ -1,12 +1,16 @@
 #include "include/highscoredialog.h"
 #include "ui_highscoredialog.h"
 #include "include/qplayer.h"
+#include <QColor>
+#include <QIcon>
+
 HighscoreDialog::HighscoreDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::HighscoreDialog)
 {
     ui->setupUi(this);
-    QVector<QPLayer*> players;
+    QVector<QPLayer> players;
+    QVector<QTableWidgetItem*> items;
     QSettings settings("tuxflo", "Memory_Qt_GUI");
     settings.beginGroup("highscore");
     int s = settings.beginReadArray("highscore");
@@ -14,7 +18,17 @@ HighscoreDialog::HighscoreDialog(QWidget *parent) :
     for(int i=0; i< s; i++)
     {
         settings.setArrayIndex(i);
-        players.push_back(settings.value("player").value<QPLayer*>());
+        QPLayer tmp;
+        tmp.set_color(settings.value("playercolor").value<QColor>());
+        tmp.set_icon(settings.value("playericon").value<QIcon>());
+        tmp.set_name(settings.value("playername").toString().toAscii().data());
+        tmp.add_points(settings.value("playerscore").toInt());
+        qDebug() << tmp.get_name().c_str();
+        players.push_back(tmp);
+        items.push_back(new QTableWidgetItem);
+        items.last()->setData(Qt::EditRole, players.last().get_score());
+        items.last()->setBackgroundColor(players.last().get_color());
+
     }
     settings.endArray();
     settings.endGroup();
@@ -26,20 +40,20 @@ HighscoreDialog::HighscoreDialog(QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderLabels(columnnames);
     ui->tableWidget->horizontalHeader()->setResizeMode(0, QHeaderView::Stretch );
     ui->tableWidget->setIconSize(QSize(50,50));
-    ui->tableWidget->setRowCount(5);
-    QTableWidgetItem *item = new QTableWidgetItem;
-    item->setData(Qt::EditRole, players.at(0)->get_score());
-    QTableWidgetItem *item1 = new QTableWidgetItem;
-    item1->setData(Qt::EditRole, players.at(1)->get_score());
-    ui->tableWidget->setItem(0, 0, new QTableWidgetItem(players.at(0)->get_icon(), players.at(0)->get_name().c_str()));
-    ui->tableWidget->setItem(0,1, item);
-    ui->tableWidget->setItem(1, 0, new QTableWidgetItem(players.at(1)->get_icon(), players.at(1)->get_name().c_str()));
-    ui->tableWidget->setItem(1,1, item1);
-    ui->tableWidget->item(0, 0)->setBackgroundColor(players.at(0)->get_color());
+    ui->tableWidget->setRowCount(items.size());
+
+    for(int j=0; j<items.size(); j++)
+    {
+        ui->tableWidget->setItem(j, 0, new QTableWidgetItem(QIcon(players[j].get_icon()), players[j].get_name().c_str()));
+        ui->tableWidget->item(j, 0)->setBackgroundColor(players[j].get_color());
+        ui->tableWidget->setItem(j, 1, items.at(j));
+    }
+
     ui->tableWidget->sortByColumn(1, Qt::DescendingOrder);
     ui->tableWidget->setSortingEnabled(true);
     ui->tableWidget->setColumnWidth(1, 100);
     ui->tableWidget->setColumnWidth(0, size().width()- 120);
+    ui->tableWidget->setIconSize(QSize(60, 60));
 
 }
 

@@ -38,5 +38,8 @@ void Main_Menu::on_settings_button_clicked()
     int delay = 300;
     settings.setValue("cards delay", duration*2+delay);
     settings.endGroup();
+    settings.beginGroup("highscore");
+    settings.remove("");
+    settings.endGroup();
     qDebug() << "Saved settings";
 }

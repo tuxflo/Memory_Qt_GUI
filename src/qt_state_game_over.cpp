@@ -27,31 +27,23 @@ void Qt_State_game_over::turn(int row, int column)
     //Create highscore
     QSettings settings("tuxflo", "Memory_Qt_GUI");
     settings.beginGroup("highscore");
-    settings.remove("");
+    //settings.remove("");
     int size = settings.beginReadArray("highscore");
     settings.endArray();
     settings.beginWriteArray("highscore");
-    for (int i = 0; i < graphicswidget->_game->get_num_of_players(); ++i)
+    for (int i = 0; i < graphicswidget->_game->get_num_of_players(); i++)
     {
         settings.setArrayIndex(i+size);
         QPLayer *player = dynamic_cast<QPLayer*>(graphicswidget->_game->get_player_at(i));
-        QVariant a = qVariantFromValue(player);
-        settings.setValue("player", a);
+        //QVariant a = qVariantFromValue(player);
+        settings.setValue("playername", player->get_name().c_str());
+        settings.setValue("playerscore", player->get_score());
+        settings.setValue("playercolor", player->get_color());
+        settings.setValue("playericon", player->get_icon());
     }
     settings.endArray();
-    settings.endGroup();
+    settings.sync();
 
-    //Read highscore (unsorted)
-    settings.beginGroup("highscore");
-    int size2 = settings.beginReadArray("highscore");
-    for (int i = 0; i < size2; ++i)
-    {
-        settings.setArrayIndex(i);
-        QPLayer *c = settings.value("player").value<QPLayer*>();
-        qDebug() << "Player: " << c->get_name().c_str() << "Color: " << c->get_color();
-    }
-    settings.endArray();
-    settings.endGroup();
     HighscoreDialog highscore;
     highscore.exec();
 }

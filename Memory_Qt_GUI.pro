@@ -36,7 +36,8 @@ SOURCES += main.cpp \
     src/qt_state_end.cpp \
     src/qt_state_game_over.cpp \
     src/newplayerdialog.cpp \
-    src/highscoredialog.cpp
+    src/highscoredialog.cpp \
+    src/highlight_rect.cpp
 
 HEADERS  += mainwindow.h \
     include/mainwindow.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     include/qt_state_end.h \
     include/qt_state_game_over.h \
     include/newplayerdialog.h \
-    include/highscoredialog.h
+    include/highscoredialog.h \
+    include/highlight_rect.h
 
 FORMS    += forms/mainwindow.ui \
     forms/memory_widget.ui \
